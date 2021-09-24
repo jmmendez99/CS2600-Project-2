@@ -14,3 +14,13 @@ double round_trip_airfare(){
     scanf("%lf", &round_trip_cost);
     return round_trip_cost;
 }
+double taxi_fees(){
+    double total_taxi_cost;
+    printf("What were your round-trip taxi fees?\n");
+    scanf("%f", &total_taxi_cost);
+    if (total_taxi_cost == 0){
+        return 0;
+    }
+    double reimbursed_taxi = (total_taxi_cost - (10 * days));
+    return reimbursed_taxi;
+}
