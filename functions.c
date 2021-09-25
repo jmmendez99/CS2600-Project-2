@@ -14,25 +14,26 @@ double round_trip_airfare(){
     scanf("%lf", &round_trip_cost);
     return round_trip_cost;
 }
-double taxi_fees(){
+double taxi_fees(int days){
     double total_taxi_cost;
     printf("What were your round-trip taxi fees?\n");
     scanf("%f", &total_taxi_cost);
-    /*
-    if (total_taxi_cost == 0){
+    double reimbursed_taxi = total_taxi_cost - (10 * days);
+
+    if (reimbursed_taxi <= 0){
         return 0;
     }
-    double reimbursed_taxi = (total_taxi_cost - (10 * days));
-    return double reimbursed_taxi;
-    */
-    //whoops, this should be somewhere else: main method? another function?
-    //I know there's problems if taxi cost is lower than days.
-    return total_taxi_cost;
+    return reimbursed_taxi;
 }
-double hotel_expenses(){
+
+double hotel_expenses(int days){
     double total_hotel_cost;
-    printf("What were your round-trip taxi fees?\n");
+    printf("What were your total hotel costs?\n");
     scanf("%f", &total_hotel_cost);
-    return total_hotel_cost;
-    
+    double reimbursed_hotel = total_hotel_cost - (90 * days);
+
+    if (reimbursed_hotel <= 0){
+        return 0;
+    }
+    return reimbursed_hotel;
 }
