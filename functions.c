@@ -16,24 +16,27 @@ double round_trip_airfare(){
 }
 double taxi_fees(int days){
     double total_taxi_cost;
-    printf("What were your round-trip taxi fees?\n");
-    scanf("%f", &total_taxi_cost);
-    double reimbursed_taxi = total_taxi_cost - (10 * days);
-
-    if (reimbursed_taxi <= 0){
+    char choice;
+    printf("Did you take a taxi on your trip?: 'y' for yes, 'n' otherwise\n");
+    scanf("%c", &choice);
+    if(choice == 'y'){
+        printf("What were your round-trip taxi fees?\n");
+        scanf("%lf", &total_taxi_cost);
+        return total_taxi_cost;
+    }
+    else{
         return 0;
     }
-    return reimbursed_taxi;
+    
 }
 
 double hotel_expenses(int days){
     double total_hotel_cost;
     printf("What were your total hotel costs?\n");
-    scanf("%f", &total_hotel_cost);
-    double reimbursed_hotel = total_hotel_cost - (90 * days);
+    scanf("%lf", &total_hotel_cost);
+    return total_hotel_cost;
+   
 
-    if (reimbursed_hotel <= 0){
-        return 0;
-    }
-    return reimbursed_hotel;
+
+    
 }
