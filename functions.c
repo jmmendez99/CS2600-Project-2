@@ -78,7 +78,7 @@ double parking_fees(int num_of_days){
     return parking_cost;
 }
 
-double registration()
+double registration_fees()
 {
    double reg_fee;
    printf(" Enter registration fee \n");
