@@ -22,7 +22,7 @@ double private_vehicle_cost(int miles_driven){
     scanf("%c", &private_vehicle_bool);
     if(private_vehicle_bool == 'y'){
         printf("How many miles did you drive?\n");
-        scanf("%d", miles_driven);
+        scanf("%d", &miles_driven);
         private_vehicle_expense = expense_per_mile*miles_driven;
         return private_vehicle_expense;
     }else{
@@ -31,9 +31,9 @@ double private_vehicle_cost(int miles_driven){
 }
 int departure_arrival_times(double departure_time, double arrival_time){
     printf("What time did you depart on the first day of your trip? Enter time as decimal \n(i.e. put a decimal in place of colon.\n");
-    scanf("%lf", departure_time);
+    scanf("%lf", &departure_time);
     printf("What time did you arrive back home on the last day of your trip.\n");
-    scanf("%lf", arrival_time);
+    scanf("%lf", &arrival_time);
     printf("On the first day of your trip, you departed at %lf. On the last day of your trip, you arrived back home at %lf.", departure_time, arrival_time);
     return 0;
 }
