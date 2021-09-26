@@ -77,3 +77,17 @@ double parking_fees(int num_of_days){
 
     return parking_cost;
 }
+
+double registration()
+{
+   double reg_fee;
+   printf(" Enter registration fee \n");
+scanf(reg_fee);
+while(reg_fee<0)
+{
+printf(" Enter correct registration fee\n");
+scanf(reg_fee);
+}
+   totalExpenses=totalExpenses+reg_fee;
+return 0;
+}
