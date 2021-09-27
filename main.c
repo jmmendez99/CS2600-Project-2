@@ -15,8 +15,14 @@ int main(void) {
     double miles_driven_private;
     double registration_cost;
     double parking_fees;    //has deductions
-    double taxi;            //has deductions
-    double hotels;          //has deductions
+    double taxi;                    //total spent
+    double taxi_allowed_expense;    //how much allowed
+    double taxi_reimbursement;      //how much owed to the company
+    double taxi_saved;              //how much money saved
+    double hotels; 
+    double hotel_allowed_expense;  
+    double hotel_reimbursement;   
+    double hotel_saved;    
     double meals;           //has deductions
     double getBreakfast;
     double getLunch;
@@ -43,9 +49,10 @@ int main(void) {
     miles_driven_private = private_vehicle_cost();
     registration_cost = registration_fees();
     parking_fees = parking_cost();
-    //taxi = taxi_cost();
-    //hotels = hotel_cost();
+    taxi = taxi_fees();
+    hotels = hotel_expenses();
     total_costs = airfare + car_rentals + miles_driven_private + registration_cost + parking_fees + taxi + hotels;
+
 
 
     //All Deductions
@@ -62,10 +69,25 @@ int main(void) {
     }
 
     //Taxi Costs Deduction Calculation
-
+    taxi_allowed_expense = (10 * num_of_days);
+    //returns negative when person used less than what was allowed
+    taxi_reimbursement = taxi - taxi_allowed_expense;
+    //if saved money or broke even, sets what needs to be owed to 0
+    if(taxi_reimbursement <= 0){
+        //sets amount of money saved as a positive number.
+        taxi_saved = fabs(taxi_reimbursement);
+        taxi_reimbursement = 0;
+    }
+    taxi_saved = 0;
 
     //Hotel Costs Deduction Calculation
-
+    hotel_allowed_expense = (90 * num_of_days);
+    hotel_reimbursement = hotels - hotel_allowed_expense;
+    if(hotel_reimbursement <= 0 ){
+        hotel_saved = fabs(hotel_reimbursement);
+        hotel_reimbursement = 0;
+    }
+    hotel_saved = 0;
 
     //Meal Costs Deduction Calculation
 

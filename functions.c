@@ -18,6 +18,36 @@ double round_trip_airfare(){
     scanf("%lf", &round_trip_cost);
     return round_trip_cost;
 }
+double taxi_fees(int days){
+    double total_taxi_cost;
+    char choice;
+    printf("Did you take a taxi on your trip?: 'y' for yes, 'n' otherwise\n");
+    scanf("%c", &choice);
+    if(choice == 'y'){
+        Taxi: ;
+        printf("What were your round-trip taxi fees?\n");
+        scanf("%lf", &total_taxi_cost);
+        if(total_taxi_cost < 0){
+            goto Taxi;
+        }
+        return total_taxi_cost;
+    }
+    else{
+        return 0;
+    }
+    
+}
+
+double hotel_expenses(int days){
+    double total_hotel_cost;
+    Hotel: ;
+    printf("What were your total hotel costs?\n");
+    scanf("%lf", &total_hotel_cost);
+    if (total_hotel_cost < 0){
+        goto Hotel;
+    }
+    return total_hotel_cost;
+}
 double private_vehicle_cost(){
     char private_vehicle_bool;
     double miles_driven;
