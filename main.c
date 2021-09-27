@@ -13,7 +13,7 @@ int main(void) {
     double airfare;
     double car_rentals;
     double miles_driven_private;
-    double registration_fees;
+    double registration_cost;
     double parking_fees;    //has deductions
     double taxi;                    //total spent
     double taxi_allowed_expense;    //how much allowed
@@ -24,12 +24,15 @@ int main(void) {
     double hotel_reimbursement;   
     double hotel_saved;    
     double meals;           //has deductions
-    
+    double getBreakfast;
+    double getLunch;
+    double getDinner;
+
     //Costs that will output to the console
-    double total_costs;  
-    double allowable_costs;
-    double excess_reimbursement;
-    double amnt_saved;
+    double total_costs = 0;  
+    double allowable_costs = 0;
+    double excess_reimbursement = 0;
+    double amnt_saved = 0;
 
     //Get # of days spent on trip and departure/arrival times
     num_of_days = total_trip_days();
@@ -44,15 +47,26 @@ int main(void) {
     airfare = round_trip_airfare();
     car_rentals = car_rental_cost();
     miles_driven_private = private_vehicle_cost();
-    //registration_fees = conference_cost();
-    //parking_fees = parking_cost();
+    registration_cost = registration_fees();
+    parking_fees = parking_cost();
     taxi = taxi_fees();
     hotels = hotel_expenses();
+    total_costs = airfare + car_rentals + miles_driven_private + registration_cost + parking_fees + taxi + hotels;
+
 
 
     //All Deductions
     //Parking Costs Deduction Calculation
-
+    double parking_allowance = num_of_days * 6;
+    
+    if (parking_fees < parking_allowance){
+        parking_fees = parking_allowance - parking_fees;
+        amnt_saved = amnt_saved + parking_fees;
+    }
+    else if (parking_fees > parking_allowance){
+        parking_fees = parking_fees - parking_allowance;
+        excess_reimbursement = excess_reimbursement + parking_fees;
+    }
 
     //Taxi Costs Deduction Calculation
     taxi_allowed_expense = (10 * num_of_days);
