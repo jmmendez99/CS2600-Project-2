@@ -3,30 +3,35 @@
 //Functions to be implemented Go here
 
 int total_trip_days() {
-    int num_of_days;
+    int num_of_days = 0;
     
-    while(num_of_days < 0){
+    while(num_of_days < 1){
         printf("Please enter the total number of days spent on the trip.\n");
-        scanf("%d", &num_of_days);
+        scanf("%d\n", &num_of_days);
     }    
     return num_of_days;
 }
 
 double round_trip_airfare(){
-    double round_trip_cost;
+    double round_trip_cost = 0;
+
     printf("What did the round-trip airfare cost?\n");
-    scanf("%lf", &round_trip_cost);
-    while(round_trip_cost<-0.01){
+    scanf("%lf\n", &round_trip_cost);
+
+    while(round_trip_cost < -0.01){
         printf("You entered a negative number for the airfare cost. Try again. What did the round-trip airfare cost?\n");
-        scanf("%lf", &round_trip_cost);
+        scanf("%lf\n", &round_trip_cost);
     }
     return round_trip_cost;
 }
-double taxi_fees(int days){
-    double total_taxi_cost;
+
+double taxi_fees(int num_of_days){
+    double total_taxi_cost = 0;
     char choice;
+
     printf("Did you take a taxi on your trip?: 'y' for yes, 'n' otherwise\n");
-    scanf("%c", &choice);
+    scanf("%c\n", &choice);
+
     if(choice == 'y'){
         Taxi: ;
         printf("What were your round-trip taxi fees?\n");
@@ -37,16 +42,17 @@ double taxi_fees(int days){
         return total_taxi_cost;
     }
     else{
-        return 0;
+        return total_taxi_cost;
     }
-    
 }
 
 double hotel_expenses(int num_of_days){
-    double total_hotel_cost;
+    double total_hotel_cost = 0;
+
     Hotel: ;
     printf("What were your total hotel costs?\n");
-    scanf("%lf", &total_hotel_cost);
+    scanf("%lf\n", &total_hotel_cost);
+
     if (total_hotel_cost < 0){
         goto Hotel;
     }
@@ -58,18 +64,23 @@ double private_vehicle_cost(){
     double miles_driven;
     double expense_per_mile = 0.27;
     double private_vehicle_expense = 0;
+
     printf("If you drove a private vehicle, type 'y'. If you did not, press any key.\n");
-    scanf("%c", &private_vehicle_bool);
+    scanf("%c\n", &private_vehicle_bool);
+
     if(private_vehicle_bool == 'y'){
         printf("How many miles did you drive?\n");
-        scanf("%d", &miles_driven);
-        while(miles_driven<-0.01){
+        scanf("%d\n", &miles_driven);
+
+        while(miles_driven < -0.01){
             printf("You entered a negative number. Try again. How many miles did you drive?\n");
-            scanf("%d", &miles_driven);
+            scanf("%d\n", &miles_driven);
         }
-        private_vehicle_expense = expense_per_mile*miles_driven;
+
+        private_vehicle_expense = expense_per_mile * miles_driven;
         return private_vehicle_expense;
-    }else{
+    }
+    else{
         return private_vehicle_expense;
     }
 }
@@ -83,53 +94,51 @@ double car_rental_cost(){
     
     if(car_rental_choice == 'y'){   //Checking if user rented a car
         while(car_rental_expense < 0) {
-            printf("How much was your rental?");
-            scanf("%lf", &car_rental_expense);
+            printf("How much was your rental?\n");
+            scanf("%lf\n", &car_rental_expense);
         }
-
         return car_rental_expense;
     }
-    else
+    else{
         return car_rental_expense;
+    }
 }
 
 double parking_cost(){
     char car_parking_choice;         //Variable to represent yes/no
-    double parking_expense = 0;
+    double parking_expense = 0;      //Setting to 0 so we can return that value if no parking bought.
     
     printf("If you purchased parking, type 'y'. If you did not, press any key.\n");
     scanf("%c\n", &car_parking_choice);
 
     if(car_parking_choice == 'y'){   //Checking if user had any parking expenses
         while(parking_expense < 0) {
-            printf("How much did parking cost you?");
-            scanf("%lf", &parking_expense);
+            printf("How much did parking cost you?\n");
+            scanf("%lf\n", &parking_expense);
         }
-
         return parking_expense;
     }
-    else
+    else{
         return parking_expense;
+    }
 }
 
-double registration_fees()
-    {   
-       double totalExpenses; 
+double registration_fees(){   
+       double totalExpenses = 0; 
        double reg_fee;
        
-       printf(" Enter registration fee \n");
-       scanf(reg_fee);
+       printf("Enter any conference or seminar registration fees.\n");
+       scanf("%lf\n", &reg_fee);
     
-       while(reg_fee<0)
-      {
+       while(reg_fee < 0){
         printf(" Enter correct registration fee\n");
-        scanf(reg_fee);
+        scanf("%lf\n", &reg_fee);
       }
        
        totalExpenses = totalExpenses + reg_fee;
        
-       return 0;
-    }
+       return totalExpenses;
+}
 
 double meals(int num_of_days, double arrival_time, double departure_time)
     {
@@ -171,35 +180,41 @@ double meals(int num_of_days, double arrival_time, double departure_time)
         else if(arrival_time < 19.00)
            dinner = dinner - 1;
         
-        double b,l,d;
+        double b,l,d;     //storing costs of (b)reakfast/(l)unch/(d)inner
         b = getBreakfast();
         l = getLunch();
         d = getDinner();
         totalExpenses = totalExpenses + (b*breakfast) + (l*lunch) + (d*dinner);
 
-        return (9*breakfast)+(12*lunch)+(16*dinner);
+        return (9*breakfast) + (12*lunch) + (16*dinner);
     }
 
-double getBreakfast()
-    {
+double getBreakfast(){
        double cost;
+       
+       while(cost < 0){
        printf("Enter the cost of breakfast\n");
-       scanf(cost);
+       scanf("%lf\n", &cost);
+       }
        return cost;
-    }
+}
 
-double getLunch()
-    {
+double getLunch(){
        double cost;
-       printf("Enter the cost of Lunch\n");
-       scanf(cost);
+       
+       while(cost < 0){
+       printf("Enter the cost of lunch\n");
+       scanf("%lf\n", &cost);
+       }
        return cost;
-    }
+}
 
-double getDinner()
-    {
+double getDinner(){
        double cost;
-       printf("Enter the cost of Dinner\n");
-       scanf(cost);
+
+       while(cost < 0){
+       printf("Enter the cost of dinner\n");
+       scanf("%lf\n", &cost);
+       }
        return cost;
-    }
+}

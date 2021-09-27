@@ -26,10 +26,10 @@ int main(void) {
     double hotel_reimbursement;   
     double hotel_saved;    
     
-    double meals;                   //Meal variables
-    double getBreakfast;
-    double getLunch;
-    double getDinner;
+    double meal_costs;                   //Meal variables
+    double Breakfast;
+    double Lunch;
+    double Dinner;
 
     //Costs that will output to the console
     double total_costs = 0;  
@@ -37,15 +37,15 @@ int main(void) {
     double excess_reimbursement = 0;
     double amnt_saved = 0;
 
-    //Get # of days spent on trip and departure/arrival times
-    num_of_days = total_trip_days();
+    //Get days spent on trip and departure/arrival times and input validation
+        num_of_days = total_trip_days();
 
-    printf("Enter the time of departure on the first day of your trip. Enter as 24-hour time. Ex: 15.00 would be 3 pm: ");
-    scanf("%lf\n", &departure_time);
+        printf("Enter the time of departure on the first day of your trip. Enter as 24-hour time. Ex: 15.00 would be 3 pm: ");
+        scanf("%lf\n", &departure_time);
 
-    printf("Enter the time of arrival back home on the last day of your trip:");
-    scanf("lf\n", &arrival_time);
-
+        printf("Enter the time of arrival back home on the last day of your trip:");
+        scanf("lf\n", &arrival_time);
+    
     //Function calls to get total_costs of expenses before deductions
     airfare = round_trip_airfare();
     car_rentals = car_rental_cost();
@@ -54,7 +54,12 @@ int main(void) {
     parking_fees = parking_cost();
     taxi = taxi_fees();
     hotels = hotel_expenses();
-    total_costs = airfare + car_rentals + miles_driven_private + registration_cost + parking_fees + taxi + hotels;
+    Breakfast = getBreakfast();
+    Lunch = getLunch();
+    Dinner = getDinner();
+
+    //Total cost of everything before any deductions are made
+    total_costs = airfare + car_rentals + miles_driven_private + registration_cost + parking_fees + taxi + hotels + Breakfast + Lunch + Dinner;
 
 
 
@@ -86,7 +91,10 @@ int main(void) {
 
     //Hotel Costs Deduction Calculation
     hotel_allowed_expense = (90 * num_of_days);
+    //returns negative when person used less than what was allowed
     hotel_reimbursement = hotels - hotel_allowed_expense;
+    excess_reimbursement = excess_reimbursement + hotel_reimbursement;
+    //if saved money or broke even, sets what needs to be owed to 0
     if(hotel_reimbursement <= 0 ){
         hotel_saved = fabs(hotel_reimbursement);
         hotel_reimbursement = 0;
@@ -94,7 +102,7 @@ int main(void) {
     hotel_saved = 0;
 
     //Meal Costs Deduction Calculation
-
+    meal_costs = meals();   
 
     //Output Summary of Everything
     printf("Total Days on Trip: %d", num_of_days);
