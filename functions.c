@@ -2,23 +2,12 @@
 #include <math.h>
 #include "header.h"
 
-
 //Functions to be implemented Go here
-
-int total_trip_days() {
-    int num_of_days = 0;
-    
-    while(num_of_days < 1){
-        printf("Please enter the total number of days spent on the trip.\n");
-        scanf("%d\n", &num_of_days);
-    }    
-    return num_of_days;
-}
 
 double round_trip_airfare(){
     double round_trip_cost = 0;
 
-    printf("What did the round-trip airfare cost?\n");
+    printf("What did the round-trip airfare cost: ");
     scanf("%lf\n", &round_trip_cost);
 
     while(round_trip_cost < -0.01){
@@ -130,11 +119,11 @@ double registration_fees(){
        double totalExpenses = 0; 
        double reg_fee;
        
-       printf("Enter any conference or seminar registration fees.\n");
+       printf("Enter any conference or seminar registration fees: ");
        scanf("%lf\n", &reg_fee);
     
        while(reg_fee < 0){
-        printf(" Enter correct registration fee\n");
+        printf(" Enter correct registration fee: ");
         scanf("%lf\n", &reg_fee);
       }
 
@@ -241,29 +230,26 @@ double meals(int num_of_days, double arrival_time, double departure_time){
 double getBreakfast(){
        double cost;
        
-       while(cost < 0){
        printf("Enter the cost of breakfasts you ate.\n");
        scanf("%lf\n", &cost);
-       }
+    
        return cost;
 }
 
 double getLunch(){
        double cost;
        
-       while(cost < 0){
        printf("Enter the cost of lunches you ate.\n");
        scanf("%lf\n", &cost);
-       }
+       
        return cost;
 }
 
 double getDinner(){
        double cost;
-
-       while(cost < 0){
+       
        printf("Enter the cost of dinners you ate.\n");
        scanf("%lf\n", &cost);
-       }
+    
        return cost;
 }

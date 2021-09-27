@@ -42,15 +42,15 @@ int main(void) {
     double amnt_saved = 0;
 
     //Get days spent on trip and departure/arrival times and input validation
-    num_of_days = total_trip_days();
+    printf("Please enter the total number of days spent on the trip: ");
+    scanf("%i\n", &num_of_days);
 
-    while (departure_time < 0.00 || arrival_time < 0.00){
-        printf("Enter the time of departure on the first day of your trip. Enter as 24-hour time. Ex: 15.00 would be 3 pm: ");
-        scanf("%lf\n", &departure_time);
+    printf("Enter the time of departure on the first day of your trip. Enter as 24-hour time. Ex: 15.00 would be 3 pm: ");
+    scanf("%lf\n", &departure_time);
 
-        printf("Enter the time of arrival back home on the last day of your trip:");
-        scanf("lf\n", &arrival_time);
-    }
+    printf("Enter the time of arrival back home on the last day of your trip: ");
+    scanf("%lf\n", &arrival_time);
+
     //Function calls to get total_costs of expenses before deductions
     airfare = round_trip_airfare();
     car_rentals = car_rental_cost();
@@ -125,14 +125,14 @@ int main(void) {
     amnt_saved = parking_saved + hotel_saved + taxi_saved;
 
     //Output Summary of Everything
-    printf("-----------Trip Summary-------------");
-    printf("Total Days on Trip: %d", num_of_days);
-    printf("Time of Departure: %lf", departure_time);
-    printf("Time of Arrival: %lf", arrival_time);
-    printf("Total expenses: %lf", total_costs);
-    printf("Total allowable expenses: %lf", allowable_costs);
-    printf("Total excess reimbursement: %lf", excess_reimbursement);
-    printf("Amount Saved: %lf", amnt_saved);
+    printf("\n-----------Trip Summary-------------\n");
+    printf("Total Days on Trip: %d\n", num_of_days);
+    printf("Time of Departure: %lf\n", departure_time);
+    printf("Time of Arrival: %lf\n", arrival_time);
+    printf("Total expenses: %lf\n", total_costs);
+    printf("Total allowable expenses: %lf\n", allowable_costs);
+    printf("Total excess reimbursement: %lf\n", excess_reimbursement);
+    printf("Amount Saved: %lf\n", amnt_saved);
 
     return 0;
 }
