@@ -24,6 +24,10 @@ int main(void) {
     double allowable_costs;
     double excess_reimbursement;
     double amnt_saved;
+    double meals;
+    double getBreakfast;
+    double getLunch;
+    double getDinner;
 
     //Get # of days spent on trip and departure/arrival times
     num_of_days = total_trip_days();
