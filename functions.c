@@ -1,4 +1,6 @@
 #include "header.h"
+#include<stdio.h>
+#include<math.h>
 
 //Functions to be implemented Go here
 
