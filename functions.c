@@ -217,7 +217,7 @@ double meals(int num_of_days, double arrival_time, double departure_time){
         else if (l > lunch_allowance){  //if need to pay money back to company
         lunch_cost = l - lunch_allowance;
         excess_reimbursement = excess_reimbursement + lunch_cost;
-        lunch_cost = lunch_cost + excess_reimbursement
+        lunch_cost = lunch_cost + excess_reimbursement;
         }
 
         //Dinner Deduction Calculation
