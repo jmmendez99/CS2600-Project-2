@@ -21,6 +21,10 @@ int main(void) {
     double allowable_costs;
     double excess;
     double amnt_saved;
+    double meals;
+    double getBreakfast;
+    double getLunch;
+    double getDinner;
 
     //Get # of days spent on trip and departure/arrival times
     printf("Enter the total number of days spent on the trip: ");
