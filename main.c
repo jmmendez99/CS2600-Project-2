@@ -14,16 +14,19 @@ int main(void) {
     double car_rentals;
     double miles_driven_private;
     double registration_cost;
-    double parking_fees;    //has deductions
+    double parking_fees;            
+    
     double taxi;                    //total spent
     double taxi_allowed_expense;    //how much allowed
     double taxi_reimbursement;      //how much owed to the company
     double taxi_saved;              //how much money saved
-    double hotels; 
+    
+    double hotels;                  //Hotel Variables
     double hotel_allowed_expense;  
     double hotel_reimbursement;   
     double hotel_saved;    
-    double meals;           //has deductions
+    
+    double meals;                   //Meal variables
     double getBreakfast;
     double getLunch;
     double getDinner;
@@ -72,6 +75,7 @@ int main(void) {
     taxi_allowed_expense = (10 * num_of_days);
     //returns negative when person used less than what was allowed
     taxi_reimbursement = taxi - taxi_allowed_expense;
+    excess_reimbursement = excess_reimbursement + taxi_reimbursement; 
     //if saved money or broke even, sets what needs to be owed to 0
     if(taxi_reimbursement <= 0){
         //sets amount of money saved as a positive number.

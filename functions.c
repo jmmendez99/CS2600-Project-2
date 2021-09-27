@@ -38,7 +38,7 @@ double taxi_fees(int days){
     
 }
 
-double hotel_expenses(int days){
+double hotel_expenses(int num_of_days){
     double total_hotel_cost;
     Hotel: ;
     printf("What were your total hotel costs?\n");
@@ -48,6 +48,7 @@ double hotel_expenses(int days){
     }
     return total_hotel_cost;
 }
+
 double private_vehicle_cost(){
     char private_vehicle_bool;
     double miles_driven;
@@ -104,17 +105,22 @@ double parking_cost(){
 }
 
 double registration_fees()
-    {
+    {   
+       double totalExpenses; 
        double reg_fee;
+       
        printf(" Enter registration fee \n");
-    scanf(reg_fee);
-    while(reg_fee<0)
-    {
-    printf(" Enter correct registration fee\n");
-    scanf(reg_fee);
-    }
-       totalExpenses=totalExpenses+reg_fee;
-    return 0;
+       scanf(reg_fee);
+    
+       while(reg_fee<0)
+      {
+        printf(" Enter correct registration fee\n");
+        scanf(reg_fee);
+      }
+       
+       totalExpenses = totalExpenses + reg_fee;
+       
+       return 0;
     }
 
 double meals(int num_of_days, double arrival_time, double departure_time)
@@ -122,41 +128,46 @@ double meals(int num_of_days, double arrival_time, double departure_time)
         int breakfast;
         int lunch;
         int dinner;
-        if (departure<7.00)
-           breakfast=days;
-        else if(departure>7.00)
-            breakfast=days-1;
+        double totalExpenses;
+
+        //Breakfast
+        if (departure_time < 7.00)
+           breakfast = num_of_days;
+        else if(departure_time > 7.00)
+            breakfast = num_of_days - 1;
         
-        if(arrival>8.00)
-            breakfast=breakfast;
-        else if(arrival<8.00)
-           breakfast=breakfast-1;
+        if(arrival_time > 8.00)
+            breakfast = breakfast;
+        else if(arrival_time < 8.00)
+           breakfast = breakfast - 1;
         
-        if(departure<12.00)
-           lunch=days;
-        else if(departure>12.00)
-           lunch=days-1;
+        //Lunch
+        if(departure_time < 12.00)
+           lunch = num_of_days;
+        else if(departure_time > 12.00)
+           lunch = num_of_days - 1;
         
-        if(arrival>13.00)
-           lunch=lunch;
-        else if(arrival<13.00)
-           lunch=lunch-1;
+        if(arrival_time > 13.00)
+           lunch = lunch;
+        else if(arrival_time < 13.00)
+           lunch = lunch - 1;
        
-        if(departure<18.00)
-           dinner=days;
-        else if(departure>18.00)
-           dinner=days-1;
+        //Dinner
+        if(departure_time < 18.00)
+           dinner = num_of_days;
+        else if(departure_time > 18.00)
+           dinner = num_of_days - 1;
         
-        if(arrival>19.00)
-           dinner=dinner;
-        else if(arrival<19.00)
-           dinner=dinner-1;
+        if(arrival > 19.00)
+           dinner = dinner;
+        else if(arrival < 19.00)
+           dinner = dinner - 1;
         
         double b,l,d;
-        b=getBreakfast();
-        l=getLunch();
-        d= getDinner();
-        totalExpenses=totalExpenses+(b*breakfast)+(l*lunch)+(d*dinner);
+        b = getBreakfast();
+        l = getLunch();
+        d = getDinner();
+        totalExpenses = totalExpenses + (b*breakfast) + (l*lunch) + (d*dinner);
 
         return (9*breakfast)+(12*lunch)+(16*dinner);
     }
