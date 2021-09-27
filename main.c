@@ -30,7 +30,7 @@ int main(void) {
     double hotel_saved;
         
     
-    double meal_costs;              
+    double meal_costs = 0;              
     double Breakfast;
     double Lunch;
     double Dinner;
@@ -113,7 +113,7 @@ int main(void) {
     hotel_saved = 0;
 
     //Meal Costs Deduction Calculation
-    meal_costs = meals(int num_of_days, double arrival_time, double departure_time);   
+    meal_costs = meals(num_of_days, arrival_time, departure_time);   
 
     //Total allowable cost after deductions have been made
     allowable_costs = meal_costs + airfare + car_rentals + miles_driven_private + registration_cost + parking_fees + taxi + hotels;
