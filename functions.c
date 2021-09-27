@@ -4,13 +4,11 @@
 
 int total_trip_days() {
     int num_of_days;
-    printf("Please enter the total number of days spent on the trip.\n");
-    scanf("%i", &num_of_days);
-    while(num_of_days<1){
-        printf("You had to have been on the trip for at least a day. Enter the total number of days \nspent on the trip.\n");
-        scanf("%i", &num_of_days);
-    }
-    scanf("%d", &num_of_days);
+    
+    while(num_of_days < 0){
+        printf("Please enter the total number of days spent on the trip.\n");
+        scanf("%d", &num_of_days);
+    }    
     return num_of_days;
 }
 
@@ -23,6 +21,36 @@ double round_trip_airfare(){
         scanf("%lf", &round_trip_cost);
     }
     return round_trip_cost;
+}
+double taxi_fees(int days){
+    double total_taxi_cost;
+    char choice;
+    printf("Did you take a taxi on your trip?: 'y' for yes, 'n' otherwise\n");
+    scanf("%c", &choice);
+    if(choice == 'y'){
+        Taxi: ;
+        printf("What were your round-trip taxi fees?\n");
+        scanf("%lf", &total_taxi_cost);
+        if(total_taxi_cost < 0){
+            goto Taxi;
+        }
+        return total_taxi_cost;
+    }
+    else{
+        return 0;
+    }
+    
+}
+
+double hotel_expenses(int days){
+    double total_hotel_cost;
+    Hotel: ;
+    printf("What were your total hotel costs?\n");
+    scanf("%lf", &total_hotel_cost);
+    if (total_hotel_cost < 0){
+        goto Hotel;
+    }
+    return total_hotel_cost;
 }
 double private_vehicle_cost(){
     char private_vehicle_bool;
@@ -46,39 +74,41 @@ double private_vehicle_cost(){
 }
 
 double car_rental_cost(){
-    
     char car_rental_choice;         //Variable to represent yes/no
-    double car_rental_cost = 0;     //Setting to 0 so we can return that value if no car was rented. 
+    double car_rental_expense = 0;  //Setting to 0 so we can return that value if no car was rented. 
     
     printf("If you purchased a car rental, type 'y'. If you did not, press any key.\n");
     scanf("%c\n", &car_rental_choice);
-
+    
     if(car_rental_choice == 'y'){   //Checking if user rented a car
-        printf("How much was your rental?");
-        scanf("%lf", &car_rental_cost);
+        while(car_rental_expense < 0) {
+            printf("How much was your rental?");
+            scanf("%lf", &car_rental_expense);
+        }
 
-        return car_rental_cost;
+        return car_rental_expense;
     }
     else
-        return car_rental_cost;
+        return car_rental_expense;
 }
 
 double parking_cost(){
+    char car_parking_choice;         //Variable to represent yes/no
+    double parking_expense = 0;
+    
+    printf("If you purchased parking, type 'y'. If you did not, press any key.\n");
+    scanf("%c\n", &car_parking_choice);
 
-    int temp_day = 1;   //Using temp_day to represent the current day value in the for loop's output*/
+    if(car_parking_choice == 'y'){   //Checking if user had any parking expenses
+        while(parking_expense < 0) {
+            printf("How much did parking cost you?");
+            scanf("%lf", &parking_expense);
+        }
 
-    double parking_cost;    //Need this for Calculating $6 allowable deduction
-    double total_parking_cost;  //Need this for total expenses incurred on the trip
-
-    for(int counter = 0; counter < num_of_days; counter++){
-        printf("How much was parking on day %d", temp_day);
-        scanf("%lf", &parking_cost);
-        //parkingcost = par
-        temp_day = temp_day + 1;
-        
+        return parking_expense;
     }
-
-    return parking_cost;
+    else
+        return parking_expense;
 }
 
 double registration_fees()
@@ -95,43 +125,50 @@ double registration_fees()
     return 0;
     }
 
-double meals(int days, double arrival, double departure)
+double meals(int num_of_days, double arrival_time, double departure_time)
     {
-       int breakfast;
-       int lunch;
-       int dinner;
-       if (departure<7.00)
+        int breakfast;
+        int lunch;
+        int dinner;
+        if (departure<7.00)
            breakfast=days;
-       else if(departure>7.00)
-    breakfast=days-1;
-    if(arrival>8.00)
-    breakfast=breakfast;
-    else if(arrival<8.00)
+        else if(departure>7.00)
+            breakfast=days-1;
+        
+        if(arrival>8.00)
+            breakfast=breakfast;
+        else if(arrival<8.00)
            breakfast=breakfast-1;
-       if(departure<12.00)
+        
+        if(departure<12.00)
            lunch=days;
-       else if(departure>12.00)
+        else if(departure>12.00)
            lunch=days-1;
-       if(arrival>13.00)
+        
+        if(arrival>13.00)
            lunch=lunch;
-       else if(arrival<13.00)
+        else if(arrival<13.00)
            lunch=lunch-1;
-       if(departure<18.00)
+       
+        if(departure<18.00)
            dinner=days;
-       else if(departure>18.00)
+        else if(departure>18.00)
            dinner=days-1;
-       if(arrival>19.00)
+        
+        if(arrival>19.00)
            dinner=dinner;
-       else if(arrival<19.00)
+        else if(arrival<19.00)
            dinner=dinner-1;
-       double b,l,d;
-       b=getBreakfast();
-       l=getLunch();
-       d= getDinner();
-       totalExpenses=totalExpenses+(b*breakfast)+(l*lunch)+(d*dinner);
-       return (9*breakfast)+(12*lunch)+(16*dinner);
+        
+        double b,l,d;
+        b=getBreakfast();
+        l=getLunch();
+        d= getDinner();
+        totalExpenses=totalExpenses+(b*breakfast)+(l*lunch)+(d*dinner);
 
+        return (9*breakfast)+(12*lunch)+(16*dinner);
     }
+
 double getBreakfast()
     {
        double cost;
@@ -139,6 +176,7 @@ double getBreakfast()
        scanf(cost);
        return cost;
     }
+
 double getLunch()
     {
        double cost;
@@ -146,6 +184,7 @@ double getLunch()
        scanf(cost);
        return cost;
     }
+
 double getDinner()
     {
        double cost;
