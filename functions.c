@@ -134,19 +134,32 @@ double registration_fees(){
         printf(" Enter correct registration fee\n");
         scanf("%lf\n", &reg_fee);
       }
-       
+
        totalExpenses = totalExpenses + reg_fee;
        
        return totalExpenses;
 }
 
-double meals(int num_of_days, double arrival_time, double departure_time)
-    {
+double meals(int num_of_days, double arrival_time, double departure_time){
         int breakfast;
         int lunch;
         int dinner;
+        double breakfast_cost, lunch_cost, dinner_cost;
+        double excess_reimbursement, amnt_saved;
         double totalExpenses;
 
+        //meal allowances
+        double breakfast_allowance = num_of_days * 9;
+        double lunch_allowance = num_of_days * 12;
+        double dinner_allowance = num_of_days * 16;
+
+        //storing costs of (b)reakfast/(l)unch/(d)inner
+        double b,l,d;     
+        b = getBreakfast();
+        l = getLunch();
+        d = getDinner();
+
+        //Figuring out how many meals the business person gets
         //Breakfast
         if (departure_time < 7.00)
            breakfast = num_of_days;
@@ -180,20 +193,53 @@ double meals(int num_of_days, double arrival_time, double departure_time)
         else if(arrival_time < 19.00)
            dinner = dinner - 1;
         
-        double b,l,d;     //storing costs of (b)reakfast/(l)unch/(d)inner
-        b = getBreakfast();
-        l = getLunch();
-        d = getDinner();
-        totalExpenses = totalExpenses + (b*breakfast) + (l*lunch) + (d*dinner);
 
-        return (9*breakfast) + (12*lunch) + (16*dinner);
-    }
+        //Breakfast Deduction Calculation
+        if (b < breakfast_allowance){       //if saving money
+        breakfast_cost = breakfast_allowance - b;
+        amnt_saved = amnt_saved + breakfast_cost;
+        breakfast_cost = breakfast_cost + amnt_saved;
+        }
+        else if (b > breakfast_allowance){  //if need to pay money back to company
+        breakfast_cost = b - breakfast_allowance;
+        excess_reimbursement = excess_reimbursement + breakfast_cost;
+        breakfast_cost = breakfast_cost + excess_reimbursement;
+        }
+
+        //Lunch Deduction Calculation
+        if (l < lunch_allowance){       //if saving money
+        lunch_cost = lunch_allowance - l;
+        amnt_saved = amnt_saved + lunch_cost;
+        lunch_cost = lunch_cost + amnt_saved;
+        }
+        else if (l > lunch_allowance){  //if need to pay money back to company
+        lunch_cost = l - lunch_allowance;
+        excess_reimbursement = excess_reimbursement + lunch_cost;
+        lunch_cost = lunch_cost + excess_reimbursement
+        }
+
+        //Dinner Deduction Calculation
+        if (d < dinner_allowance){       //if saving money
+        dinner_cost = dinner_allowance - d;
+        amnt_saved = amnt_saved + dinner_cost;
+        dinner_cost = dinner_cost + amnt_saved;
+        }
+        else if (d > dinner_allowance){  //if need to pay money back to company
+        dinner_cost = d - dinner_allowance;
+        excess_reimbursement = excess_reimbursement + dinner_cost;
+        dinner_cost = dinner_cost + excess_reimbursement;
+        }
+
+        totalExpenses = breakfast_cost + lunch_cost + dinner_cost;
+
+        return totalExpenses;
+}
 
 double getBreakfast(){
        double cost;
        
        while(cost < 0){
-       printf("Enter the cost of breakfast\n");
+       printf("Enter the cost of breakfasts you ate.\n");
        scanf("%lf\n", &cost);
        }
        return cost;
@@ -203,7 +249,7 @@ double getLunch(){
        double cost;
        
        while(cost < 0){
-       printf("Enter the cost of lunch\n");
+       printf("Enter the cost of lunches you ate.\n");
        scanf("%lf\n", &cost);
        }
        return cost;
@@ -213,7 +259,7 @@ double getDinner(){
        double cost;
 
        while(cost < 0){
-       printf("Enter the cost of dinner\n");
+       printf("Enter the cost of dinners you ate.\n");
        scanf("%lf\n", &cost);
        }
        return cost;
