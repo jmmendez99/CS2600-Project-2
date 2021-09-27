@@ -166,9 +166,9 @@ double meals(int num_of_days, double arrival_time, double departure_time)
         else if(departure_time > 18.00)
            dinner = num_of_days - 1;
         
-        if(arrival > 19.00)
+        if(arrival_time > 19.00)
            dinner = dinner;
-        else if(arrival < 19.00)
+        else if(arrival_time < 19.00)
            dinner = dinner - 1;
         
         double b,l,d;
