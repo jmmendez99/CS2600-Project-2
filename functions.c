@@ -5,7 +5,7 @@
 int total_trip_days() {
     int num_of_days;
     printf("Please enter the total number of days spent on the trip.\n");
-    scanf("%i", &num_of_days);
+    scanf("%d", &num_of_days);
     return num_of_days;
 }
 
@@ -15,11 +15,12 @@ double round_trip_airfare(){
     scanf("%lf", &round_trip_cost);
     return round_trip_cost;
 }
-double private_vehicle_cost(double miles_driven){
+double private_vehicle_cost(){
     char private_vehicle_bool;
+    double miles_driven;
     double expense_per_mile = 0.27;
     double private_vehicle_expense = 0;
-    printf("If you drove a private vehicle, type 'y.' If you did not, press any key.\n");
+    printf("If you drove a private vehicle, type 'y'. If you did not, press any key.\n");
     scanf("%c", &private_vehicle_bool);
     if(private_vehicle_bool == 'y'){
         printf("How many miles did you drive?\n");
@@ -30,22 +31,13 @@ double private_vehicle_cost(double miles_driven){
         return private_vehicle_expense;
     }
 }
-double departure_arrival_times(double departure_time, double arrival_time){
-    printf("What time did you depart on the first day of your trip? Enter time as decimal \n(i.e. put a decimal in place of colon.\n");
-    scanf("%lf", &departure_time);
-    printf("What time did you arrive back home on the last day of your trip.\n");
-    scanf("%lf", &arrival_time);
-    //printf("On the first day of your trip, you departed at %lf. On the last day of your trip, you arrived back home at %lf.", departure_time, arrival_time);
-    return departure_time, arrival_time;
-}
 
-double car_rental_fees(){
+double car_rental_cost(){
     
     char car_rental_choice;         //Variable to represent yes/no
     double car_rental_cost = 0;     //Setting to 0 so we can return that value if no car was rented. 
     
-
-    printf("Did you have a car rental on your trip?");
+    printf("If you purchased a car rental, type 'y'. If you did not, press any key.\n");
     scanf("%c\n", &car_rental_choice);
 
     if(car_rental_choice == 'y'){   //Checking if user rented a car
@@ -58,9 +50,7 @@ double car_rental_fees(){
         return car_rental_cost;
 }
 
-//Needs to return two things: Total Cost of Parking and Total Allowable Cost of Parking
-//Can achieve this through pointers.
-double parking_fees(int num_of_days){
+double parking_cost(){
 
     int temp_day = 1;   //Using temp_day to represent the current day value in the for loop's output*/
 
