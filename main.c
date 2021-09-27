@@ -61,7 +61,7 @@ int main(void) {
     //if saved money or broke even, sets what needs to be owed to 0
     if(taxi_reimbursement <= 0){
         //sets amount of money saved as a positive number.
-        taxi_saved = abs(taxi_reimbursement);
+        taxi_saved = fabs(taxi_reimbursement);
         taxi_reimbursement = 0;
     }
     taxi_saved = 0;
@@ -70,7 +70,7 @@ int main(void) {
     hotel_allowed_expense = (90 * num_of_days);
     hotel_reimbursement = hotels - hotel_allowed_expense;
     if(hotel_reimbursement <= 0 ){
-        hotel_saved = abs(hotel_reimbursement);
+        hotel_saved = fabs(hotel_reimbursement);
         hotel_reimbursement = 0;
     }
     hotel_saved = 0;
